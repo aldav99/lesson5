@@ -6,11 +6,11 @@ require_relative 'instance_counter'
 class Train
 
   include InstanceCounter 
-
-  @@trains = []
+   
+  @@trains = {}
 
   def self.find(number)
-    @@trains.find { |train| train.number == number }
+    @@trains[number]
   end
 
   include ModuleVendor
@@ -23,7 +23,7 @@ class Train
     @speed = 0
     @route = route
     @number = number
-    @@trains << self
+    @@trains[number] = self
     register_instance
   end
 
